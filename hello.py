@@ -9,3 +9,13 @@ followers = 100
 print("Username:", username)
 print("Bio:", bio)
 print("Followers:", followers)
+followers = 100
+
+followers += 50
+print("Followers after first increase:", followers)
+
+followers += 20
+print("Followers after second increase:", followers)
+
+followers -= 10
+print("Followers after decrease:", followers)

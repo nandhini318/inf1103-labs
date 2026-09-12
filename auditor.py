@@ -15,3 +15,6 @@ while True:
     quantity = int(quantity)
     inventory += quantity
     print("Current inventory:", inventory)
+    if inventory > 500:
+        print("Overstock alert! Inventory exceeds 500 units.")
+        break

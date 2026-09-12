@@ -11,3 +11,7 @@ while True:
         print("Invalid input. Enter a non-negative whole number.")
         rejected_entries += 1
         continue
+
+    quantity = int(quantity)
+    inventory += quantity
+    print("Current inventory:", inventory)

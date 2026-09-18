@@ -2,6 +2,9 @@ def calculate_tax(amount):
     return amount * 0.10
 def process_delivery(current_total, new_value):
     return current_total + new_value
+def generate_report(total_units, failed_attempts):
+    print("Total Units Processed:", total_units)
+    print("Number of Failed/Rejected Entries:", failed_attempts)
 inventory = 0
 rejected_entries = 0
 
@@ -24,5 +27,4 @@ while True:
     if inventory > 500:
         print("Overstock alert! Inventory exceeds 500 units.")
         break
-print("Total Units Processed:", inventory)
-print("Number of Failed/Rejected Entries:", rejected_entries)
+generate_report(inventory, rejected_entries)

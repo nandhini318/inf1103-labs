@@ -22,6 +22,7 @@ def get_valid_input():
         return int(quantity), failed_attempts
 inventory = 0
 rejected_entries = 0
+deliveries_processed = 0
 
 while True:
     quantity, failed_attempts = get_valid_input()
@@ -31,6 +32,7 @@ while True:
         break
 
     inventory = process_delivery(inventory, quantity)
+    deliveries_processed += 1
     tax = calculate_tax(quantity)
     print("Tax for this delivery:", tax)
     print("Current inventory:", inventory)
@@ -40,3 +42,4 @@ while True:
         break
 
 generate_report(inventory, rejected_entries)
+print("Total Deliveries Processed:", deliveries_processed)

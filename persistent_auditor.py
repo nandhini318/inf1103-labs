@@ -11,6 +11,14 @@ def load_inventory():
 
     except FileNotFoundError:                         #if inventory.txt doesn't exist, makes it starts at 0, no history
         return 0, []
+
+def save_inventory(total, history):                   # Replace the old saved data with the complete updated data.
+    with open("inventory.txt", "w") as file:
+        file.write(str(total) + "\n")                 # First line: inventory total.
+
+        for amount in history:
+            file.write(str(amount) + "\n")            # One transaction per line.
+
 def calculate_tax(amount): 
     return amount * 0.10
 def process_delivery(current_total, new_value):
@@ -58,6 +66,7 @@ while True:
         print("Overstock alert! Inventory exceeds 500 units.")
         break
 
+save_inventory(inventory, history)
 generate_report(inventory, rejected_entries)
 print("Total Deliveries Processed:", deliveries_processed)
-print("Transaction history:", history) 
+print("Transaction history:", history)

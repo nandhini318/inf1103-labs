@@ -46,9 +46,10 @@ while True:
 
     if quantity == "quit":
         break
-
     inventory = process_delivery(inventory, quantity)
+    history.append(quantity)
     deliveries_processed += 1
+
     tax = calculate_tax(quantity)
     print("Tax for this delivery:", tax)
     print("Current inventory:", inventory)
@@ -59,3 +60,4 @@ while True:
 
 generate_report(inventory, rejected_entries)
 print("Total Deliveries Processed:", deliveries_processed)
+print("Transaction history:", history) 

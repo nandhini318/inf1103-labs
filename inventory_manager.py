@@ -106,5 +106,50 @@ def display_all(inventory):
     print("-" * 60)
 
 inventory = load_inventory()
-display_all(inventory)
+
+while True:
+    print("\n----------- MENU -----------")
+    print("1. Display All Products")
+    print("2. Add Product")
+    print("3. Update Stock")
+    print("4. Search Product")
+    print("5. Save Inventory")
+    print("6. Exit")
+    print("----------------------------")
+
+    option = input("Enter option: ").strip()
+
+    if option == "1":
+        display_all(inventory)
+
+    elif option == "2":
+        add_product(inventory)
+
+    elif option == "3":
+        update_stock(inventory)
+
+    elif option == "4":
+        product_id = input("Enter Product ID: ").strip().upper()
+        product = search_product(inventory, product_id)
+
+        if product is None:
+            print("Product not found.")
+        else:
+            print("\nProduct Found")
+            print(f"ID: {product['id']}")
+            print(f"Name: {product['name']}")
+            print(f"Price: ${product['price']:.2f}")
+            print(f"Stock: {product['stock']}")
+
+    elif option == "5":
+        save_inventory(inventory)
+
+    elif option == "6":
+        print("Saving inventory before exit...")
+        save_inventory(inventory)
+        print("Thank you for using Inventory Management System.")
+        break
+
+    else:
+        print("Invalid option. Please enter a number from 1 to 6.")
 

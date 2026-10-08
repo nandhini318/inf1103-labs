@@ -11,6 +11,12 @@ def load_inventory():
     except FileNotFoundError:
         print("inventory.json not found. Starting with an empty inventory.")
         return []
+
+def save_inventory(inventory):
+    with open("inventory.json", "w") as file:
+        json.dump(inventory, file, indent=4)
+
+    print("Inventory saved successfully to inventory.json.")
     
 def search_product(inventory, product_id):
     for product in inventory:

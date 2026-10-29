@@ -5,6 +5,8 @@ class Product:
         self.__price = price
         self.__stock = stock
 
+    def get_product_id(self):
+        return self.__product_id
     def update_stock(self, quantity):
         if quantity < 0:
             print("Stock cannot be negative.")

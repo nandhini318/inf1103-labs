@@ -14,7 +14,15 @@ class Inventory:
                 return product
 
         return None
-    
+
+    def to_list(self):
+        data = []
+
+        for product in self.__products:
+            data.append(product.to_dict())
+
+        return data
+
     def display_all(self):
         if not self.__products:
             print("Inventory is empty.")
@@ -33,9 +41,4 @@ if __name__ == "__main__":
     inventory.add_product(product1)
     inventory.add_product(product2)
 
-    found = inventory.search_product("P999")
-
-    if found is not None:
-        found.display_information()
-    else:
-        print("Product not found.")
+    print(inventory.to_list())

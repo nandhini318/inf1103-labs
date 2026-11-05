@@ -6,6 +6,12 @@ class PhysicalProduct(Product, CanBeShipped):
         super().__init__(product_id, name, price, stock)
         self.__weight = weight
 
+    def to_dict(self):
+        data = super().to_dict()
+        data["type"] = "physical"
+        data["weight"] = self.__weight
+        return data
+    
     def calculate_shipping_cost(self):
         return self.__weight * 5
     
@@ -26,3 +32,4 @@ if __name__ == "__main__":
     print(f"Mouse shipping: ${mouse.calculate_shipping_cost():.2f}")
 
     print(laptop.get_fulfilment_info())
+    print(laptop.to_dict())

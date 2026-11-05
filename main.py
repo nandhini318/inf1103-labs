@@ -1,5 +1,6 @@
 from file_handler import load_inventory, save_inventory
-from product import Product
+from physical_product import PhysicalProduct
+from digital_product import DigitalProduct
 
 
 def main():
@@ -20,6 +21,12 @@ def main():
             inventory.display_all()
                
         elif option == "2":
+            product_type = input("Product type (1 = Physical, 2 = Digital): ").strip()
+
+            if product_type not in ("1", "2"):
+                print("Invalid product type.")
+                continue
+
             product_id = input("Product ID: ").strip().upper()
 
             if not product_id:
@@ -47,10 +54,36 @@ def main():
                 print("Price and stock cannot be negative.")
                 continue
 
-            product = Product(product_id, name, price, stock)
+            try:
+                if product_type == "1":
+                    weight = float(input("Weight in kg: "))
+
+                    if weight <= 0:
+                        print("Weight must be positive.")
+                        continue
+
+                    product = PhysicalProduct(
+                        product_id, name, price, stock, weight
+                    )
+
+                else:
+                    download_size = float(input("Download size in MB: "))
+
+                    if download_size <= 0:
+                        print("Download size must be positive.")
+                        continue
+
+                    product = DigitalProduct(
+                        product_id, name, price, stock, download_size
+                    )
+
+            except ValueError:
+                print("Weight or download size must be a number.")
+                continue
+
             inventory.add_product(product)
             print("Product added successfully!")
-               
+
         elif option == "3":
             product_id = input("Enter Product ID: ").strip().upper()
             product = inventory.search_product(product_id)

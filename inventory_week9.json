@@ -27,7 +27,7 @@
         "id": "P002",
         "name": "Mouse'",
         "price": 25.5,
-        "stock": 5,
+        "stock": 6,
         "type": "physical",
         "weight": 0.2
     }

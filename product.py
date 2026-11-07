@@ -1,11 +1,20 @@
 from abc import ABC, abstractmethod
+from supplier import Supplier
 
 class Product(ABC):    #an abstract base class that defines the common attributes and methods for all products
-    def __init__(self, product_id, name, price, stock):      #a special method that sets up a new object. initializes the attributes of the class
-        self.__product_id = product_id          #a private attribute that stores the product ID
-        self.__name = name
-        self.__price = price
-        self.__stock = stock
+    def __init__(
+        self,
+        product_id: str,
+        name: str,
+        price: float,
+        stock: int,
+        supplier: Supplier
+    ) -> None:
+        self.__product_id: str = product_id
+        self.__name: str = name
+        self.__price: float = price
+        self.__stock: int = stock
+        self.supplier: Supplier = supplier
     
     @abstractmethod
     def get_fulfilment_info(self):

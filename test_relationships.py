@@ -3,6 +3,7 @@ from physical_product import PhysicalProduct
 from digital_product import DigitalProduct
 from inventory import Inventory
 from order import Order
+from product import Product
 
 supplier = Supplier("S001", "Tech Supplies", "sales@example.com")
 
@@ -66,6 +67,9 @@ print("Order A total:", order_a.calculate_total())
 print("Order B total:", order_b.calculate_total())
 
 
+
+
+
 order_a.add_order_line(software, 1)
 
 print("\nOrder A lines:")
@@ -84,3 +88,34 @@ print(f"Total after removal: ${order_a.calculate_total():.2f}")
 
 print("Laptop still exists:")
 laptop.display_information()
+
+
+
+
+def show_product_details(product: Product) -> None:     #liscov substitution principle - a function that expects a Product can also accept PhysicalProduct or DigitalProduct.
+    product.display_information()
+    print(product.get_fulfilment_info())
+
+
+print("\n--- LSP and polymorphism test ---")
+
+show_product_details(laptop)
+show_product_details(software)
+
+
+
+
+
+print("\n--- Mixed inventory polymorphism test ---")
+
+mixed_inventory = Inventory()
+mixed_inventory.add_product(laptop)
+mixed_inventory.add_product(software)
+
+mixed_inventory.display_all()
+
+for product_id in ("P001", "D001"):
+    product = mixed_inventory.find_product(product_id)
+
+    if product is not None:
+        print(product.get_fulfilment_info())

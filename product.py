@@ -27,6 +27,10 @@ class Product(ABC):    #an abstract base class that defines the common attribute
             "stock": self.__stock
         }
     
+    @property
+    def price(self) -> float:
+        return self.__price
+
     def get_product_id(self):
         return self.__product_id
     

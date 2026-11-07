@@ -24,5 +24,18 @@
         },
         "type": "digital",
         "download_size": 500
+    },
+    {
+        "id": "P010",
+        "name": "USB Cable",
+        "price": 8.5,
+        "stock": 20,
+        "supplier": {
+            "supplier_id": "S002",
+            "name": "Cable Supplies",
+            "contact_email": "sales@cables.example"
+        },
+        "type": "physical",
+        "weight": 0.1
     }
 ]

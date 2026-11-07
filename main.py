@@ -1,6 +1,7 @@
 from file_handler import load_inventory, save_inventory
 from physical_product import PhysicalProduct
 from digital_product import DigitalProduct
+from supplier import Supplier
 
 
 def main():
@@ -53,6 +54,18 @@ def main():
             if price < 0 or stock < 0:
                 print("Price and stock cannot be negative.")
                 continue
+            
+            supplier_id = input("Supplier ID: ").strip().upper()
+            supplier_name = input("Supplier Name: ").strip()
+            supplier_email = input("Supplier Email: ").strip()
+
+            if not supplier_id or not supplier_name or not supplier_email:
+                print("All supplier details are required.")
+                continue
+
+            supplier = Supplier(
+                supplier_id, supplier_name, supplier_email
+            )
 
             try:
                 if product_type == "1":
@@ -61,9 +74,9 @@ def main():
                     if weight <= 0:
                         print("Weight must be positive.")
                         continue
-
+                   
                     product = PhysicalProduct(
-                        product_id, name, price, stock, weight
+                        product_id, name, price, stock, weight, supplier
                     )
 
                 else:
@@ -74,9 +87,10 @@ def main():
                         continue
 
                     product = DigitalProduct(
-                        product_id, name, price, stock, download_size
+                        product_id, name, price, stock,
+                        download_size, supplier
                     )
-
+                    
             except ValueError:
                 print("Weight or download size must be a number.")
                 continue

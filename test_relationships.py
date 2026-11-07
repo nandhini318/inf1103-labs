@@ -4,6 +4,7 @@ from digital_product import DigitalProduct
 from inventory import Inventory
 from order import Order
 from product import Product
+from file_handler import save_inventory, load_inventory
 
 supplier = Supplier("S001", "Tech Supplies", "sales@example.com")
 
@@ -119,3 +120,19 @@ for product_id in ("P001", "D001"):
 
     if product is not None:
         print(product.get_fulfilment_info())
+
+
+
+
+        print("\n--- Week 10 persistence test ---")
+
+save_inventory(mixed_inventory)
+
+loaded_inventory = load_inventory()
+loaded_inventory.display_all()
+
+loaded_laptop = loaded_inventory.find_product("P001")
+
+if loaded_laptop is not None:
+    print("Reloaded Laptop supplier:")
+    loaded_laptop.supplier.display_information()

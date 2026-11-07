@@ -17,7 +17,7 @@ class Product(ABC):    #an abstract base class that defines the common attribute
         self.supplier: Supplier = supplier
     
     @abstractmethod
-    def get_fulfilment_info(self):
+    def get_fulfilment_info(self) -> str:
         pass
     
     def to_dict(self) -> dict[str, object]:
@@ -33,10 +33,10 @@ class Product(ABC):    #an abstract base class that defines the common attribute
     def price(self) -> float:
         return self.__price
 
-    def get_product_id(self):
+    def get_product_id(self) -> str:
         return self.__product_id
     
-    def update_stock(self, quantity):
+    def update_stock(self, quantity: int) -> None:
         if quantity < 0:
             print("Stock cannot be negative.")
             return
@@ -44,16 +44,8 @@ class Product(ABC):    #an abstract base class that defines the common attribute
         self.__stock = quantity
         print("Stock updated successfully!")
     
-    def display_information(self):           #a method to display the product information in a formatted manner
+    def display_information(self) -> None:           #a method to display the product information in a formatted manner
         print(
             f"ID: {self.__product_id} | Name: {self.__name} | "
             f"Price: ${self.__price:.2f} | Stock: {self.__stock}"
         )
-
-if __name__ == "__main__":
-    product1 = Product("P001", "Laptop", 1200.00, 15)
-    product2 = Product("P002", "Mouse", 25.50, 40)
-
-    product1.update_stock(-5)
-    product1.display_information()
-    product2.display_information()

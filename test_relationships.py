@@ -124,7 +124,9 @@ for product_id in ("P001", "D001"):
 
 
 
-        print("\n--- Week 10 persistence test ---")
+
+
+print("\n--- Week 10 persistence test ---")
 
 save_inventory(mixed_inventory)
 

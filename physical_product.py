@@ -14,31 +14,21 @@ class PhysicalProduct(Product, CanBeShipped):
     ) -> None:
         super().__init__(product_id, name, price, stock, supplier)
         self.__weight: float = weight
-        
-    def to_dict(self):
+    
+    def to_dict(self) -> dict[str, object]:
         data = super().to_dict()
         data["type"] = "physical"
         data["weight"] = self.__weight
         return data
     
-    def calculate_shipping_cost(self):
+    def calculate_shipping_cost(self) -> float:
         return self.__weight * 5
     
-    def get_fulfilment_info(self):
+    def get_fulfilment_info(self) -> str:
         return "This product requires physical shipping."
     
-    def display_information(self):
+    def display_information(self) -> None:
         super().display_information()
         print(f"Weight: {self.__weight} kg")
 
 
-if __name__ == "__main__":
-    laptop = PhysicalProduct("P001", "Laptop", 1200.00, 15, 2.5)
-    laptop.display_information()
-    print(f"Shipping cost: ${laptop.calculate_shipping_cost():.2f}")
-
-    mouse = PhysicalProduct("P002", "Mouse", 25.50, 40, 0.2)
-    print(f"Mouse shipping: ${mouse.calculate_shipping_cost():.2f}")
-
-    print(laptop.get_fulfilment_info())
-    print(laptop.to_dict())
